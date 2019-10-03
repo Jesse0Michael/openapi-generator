@@ -67,10 +67,10 @@
     {{/minimum}}
     {{#maximum}}
     {{#exclusiveMaximum}}
-        $asserts[] = new Assert\LessThan({{maximum}});
+        $asserts[] = new Assert\LessThan({{minimum}});
     {{/exclusiveMaximum}}
     {{^exclusiveMaximum}}
-        $asserts[] = new Assert\LessThanOrEqual({{maximum}});
+        $asserts[] = new Assert\LessThanOrEqual({{minimum}});
     {{/exclusiveMaximum}}
     {{/maximum}}
     {{#pattern}}

@@ -13,13 +13,11 @@ package org.openapitools.client.models
 
 
 import com.squareup.moshi.Json
-import java.io.Serializable
 /**
  * 
  * @param name Updated name of the pet
  * @param status Updated status of the pet
  */
-
 data class InlineObject (
     /* Updated name of the pet */
     @Json(name = "name")
@@ -27,7 +25,6 @@ data class InlineObject (
     /* Updated status of the pet */
     @Json(name = "status")
     val status: kotlin.String? = null
-) 
-: Serializable 
+)
 
 

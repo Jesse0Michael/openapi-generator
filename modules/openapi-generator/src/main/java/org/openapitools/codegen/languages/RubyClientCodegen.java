@@ -387,7 +387,7 @@ public class RubyClientCodegen extends AbstractRubyCodegen {
         name = name.replaceAll("-", "_"); // FIXME: a parameter should not be assigned. Also declare the methods parameters as 'final'.
 
         // e.g. PhoneNumberApi.rb => phone_number_api.rb
-        return underscore(name + "_" + apiNameSuffix);
+        return underscore(name) + "_api";
     }
 
     @Override
@@ -407,7 +407,11 @@ public class RubyClientCodegen extends AbstractRubyCodegen {
 
     @Override
     public String toApiName(String name) {
-        return super.toApiName(name);
+        if (name.length() == 0) {
+            return "DefaultApi";
+        }
+        // e.g. phone_number_api => PhoneNumberApi
+        return camelize(name) + "Api";
     }
 
     @Override

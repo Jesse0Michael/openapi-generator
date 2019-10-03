@@ -13,7 +13,6 @@ package org.openapitools.client.models
 
 
 import com.squareup.moshi.Json
-import java.io.Serializable
 /**
  * 
  * @param id 
@@ -23,7 +22,6 @@ import java.io.Serializable
  * @param status Order Status
  * @param complete 
  */
-
 data class Order (
     @Json(name = "id")
     val id: kotlin.Long? = null,
@@ -38,16 +36,13 @@ data class Order (
     val status: Order.Status? = null,
     @Json(name = "complete")
     val complete: kotlin.Boolean? = null
-) 
-: Serializable 
+)
 
 {
-
     /**
     * Order Status
     * Values: placed,approved,delivered
     */
-    
     enum class Status(val value: kotlin.String){
     
         @Json(name = "placed") placed("placed"),
@@ -56,8 +51,7 @@ data class Order (
     
         @Json(name = "delivered") delivered("delivered");
     
-
     }
-
 }
+
 

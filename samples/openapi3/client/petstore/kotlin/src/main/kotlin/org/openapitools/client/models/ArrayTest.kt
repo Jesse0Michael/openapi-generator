@@ -14,14 +14,12 @@ package org.openapitools.client.models
 import org.openapitools.client.models.ReadOnlyFirst
 
 import com.squareup.moshi.Json
-import java.io.Serializable
 /**
  * 
  * @param arrayOfString 
  * @param arrayArrayOfInteger 
  * @param arrayArrayOfModel 
  */
-
 data class ArrayTest (
     @Json(name = "array_of_string")
     val arrayOfString: kotlin.Array<kotlin.String>? = null,
@@ -29,7 +27,6 @@ data class ArrayTest (
     val arrayArrayOfInteger: kotlin.Array<kotlin.Array<kotlin.Long>>? = null,
     @Json(name = "array_array_of_model")
     val arrayArrayOfModel: kotlin.Array<kotlin.Array<ReadOnlyFirst>>? = null
-) 
-: Serializable 
+)
 
 

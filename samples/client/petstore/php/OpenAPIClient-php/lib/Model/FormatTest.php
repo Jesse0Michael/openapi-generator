@@ -69,8 +69,7 @@ class FormatTest implements ModelInterface, ArrayAccess
         'date' => '\DateTime',
         'date_time' => '\DateTime',
         'uuid' => 'string',
-        'password' => 'string',
-        'big_decimal' => 'BigDecimal'
+        'password' => 'string'
     ];
 
     /**
@@ -91,8 +90,7 @@ class FormatTest implements ModelInterface, ArrayAccess
         'date' => 'date',
         'date_time' => 'date-time',
         'uuid' => 'uuid',
-        'password' => 'password',
-        'big_decimal' => 'number'
+        'password' => 'password'
     ];
 
     /**
@@ -134,8 +132,7 @@ class FormatTest implements ModelInterface, ArrayAccess
         'date' => 'date',
         'date_time' => 'dateTime',
         'uuid' => 'uuid',
-        'password' => 'password',
-        'big_decimal' => 'BigDecimal'
+        'password' => 'password'
     ];
 
     /**
@@ -156,8 +153,7 @@ class FormatTest implements ModelInterface, ArrayAccess
         'date' => 'setDate',
         'date_time' => 'setDateTime',
         'uuid' => 'setUuid',
-        'password' => 'setPassword',
-        'big_decimal' => 'setBigDecimal'
+        'password' => 'setPassword'
     ];
 
     /**
@@ -178,8 +174,7 @@ class FormatTest implements ModelInterface, ArrayAccess
         'date' => 'getDate',
         'date_time' => 'getDateTime',
         'uuid' => 'getUuid',
-        'password' => 'getPassword',
-        'big_decimal' => 'getBigDecimal'
+        'password' => 'getPassword'
     ];
 
     /**
@@ -255,7 +250,6 @@ class FormatTest implements ModelInterface, ArrayAccess
         $this->container['date_time'] = isset($data['date_time']) ? $data['date_time'] : null;
         $this->container['uuid'] = isset($data['uuid']) ? $data['uuid'] : null;
         $this->container['password'] = isset($data['password']) ? $data['password'] : null;
-        $this->container['big_decimal'] = isset($data['big_decimal']) ? $data['big_decimal'] : null;
     }
 
     /**
@@ -715,30 +709,6 @@ class FormatTest implements ModelInterface, ArrayAccess
         }
 
         $this->container['password'] = $password;
-
-        return $this;
-    }
-
-    /**
-     * Gets big_decimal
-     *
-     * @return BigDecimal|null
-     */
-    public function getBigDecimal()
-    {
-        return $this->container['big_decimal'];
-    }
-
-    /**
-     * Sets big_decimal
-     *
-     * @param BigDecimal|null $big_decimal big_decimal
-     *
-     * @return $this
-     */
-    public function setBigDecimal($big_decimal)
-    {
-        $this->container['big_decimal'] = $big_decimal;
 
         return $this;
     }

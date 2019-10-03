@@ -23,10 +23,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Arrays;
-import java.lang.Exception;
 
 @SuppressWarnings("static-method")
 public class FSharpServerCodegenTest {
@@ -35,43 +32,37 @@ public class FSharpServerCodegenTest {
   public void testModelsAreSortedAccordingToDependencyOrder() throws Exception {
         final AbstractFSharpCodegen codegen = new P_AbstractFSharpCodegen();
 
-        final CodegenModel wheel = new CodegenModel();
-        wheel.setImports(new HashSet<String>(Arrays.asList()));
-        wheel.setClassname("wheel");
-
-        final CodegenModel bike = new CodegenModel();
-        bike.setImports(new HashSet<String>(Arrays.asList("wheel")));
-        bike.setClassname("bike");
-
+        // parent
         final CodegenModel parent = new CodegenModel();
-        parent.setImports(new HashSet<String>(Arrays.asList("bike", "car")));
-        parent.setClassname("parent");
-
-        final CodegenModel car = new CodegenModel();
-        car.setImports(new HashSet<String>(Arrays.asList("wheel")));
-        car.setClassname("car");
+        CodegenProperty childProp = new CodegenProperty();
+        childProp.complexType = "child";
+        childProp.name = "child";
+        parent.setVars(Collections.singletonList(childProp));
 
         final CodegenModel child = new CodegenModel();
-        child.setImports(new HashSet<String>(Arrays.asList("car", "bike", "parent")));
-        child.setClassname("child");
+        CodegenProperty carProp = new CodegenProperty();
+        carProp.complexType = "car";
+        carProp.name = "car";
+        child.setVars(Collections.singletonList(carProp));
+
+        // child
+        final CodegenModel car = new CodegenModel();
+        CodegenProperty modelProp = new CodegenProperty();
+        modelProp.name = "model";
+        car.setVars(Collections.singletonList(modelProp));
 
         Map<String, Object> models = new HashMap<String,Object>();
         models.put("parent", Collections.singletonMap("models", Collections.singletonList(Collections.singletonMap("model", parent))));
         models.put("child", Collections.singletonMap("models", Collections.singletonList(Collections.singletonMap("model", child))));
         models.put("car", Collections.singletonMap("models", Collections.singletonList(Collections.singletonMap("model", car))));
-        models.put("bike", Collections.singletonMap("models", Collections.singletonList(Collections.singletonMap("model", bike))));
-        models.put("wheel", Collections.singletonMap("models", Collections.singletonList(Collections.singletonMap("model", wheel))));
 
         Map<String,Object> sorted = codegen.postProcessDependencyOrders(models);
         
         Object[] keys = sorted.keySet().toArray();
-        
-        Assert.assertTrue(keys[0] == "wheel");
-        Assert.assertTrue(keys[1] == "bike" || keys[1] == "car");
-        Assert.assertTrue(keys[2] == "bike" || keys[2] == "car");
-        Assert.assertEquals(keys[3], "parent");
-        Assert.assertEquals(keys[4], "child");
-        
+
+        Assert.assertEquals(keys[0], "car");
+        Assert.assertEquals(keys[1], "child");
+        Assert.assertEquals(keys[2], "parent");
     }
 
     @Test(description = "modify model imports to explicit set namespace and package name")

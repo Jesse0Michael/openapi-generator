@@ -19,7 +19,6 @@ Name | Type | Description | Notes
 **dateTime** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **uuid** | [**UUID**](UUID.md) |  |  [optional]
 **password** | **String** |  | 
-**bigDecimal** | [**BigDecimal**](BigDecimal.md) |  |  [optional]
 
 
 

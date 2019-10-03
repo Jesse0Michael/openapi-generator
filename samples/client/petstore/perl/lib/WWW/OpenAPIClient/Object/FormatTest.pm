@@ -30,7 +30,6 @@ use Log::Any qw($log);
 use Date::Parse;
 use DateTime;
 
-use WWW::OpenAPIClient::Object::BigDecimal;
 
 use base ("Class::Accessor", "Class::Data::Inheritable");
 
@@ -253,13 +252,6 @@ __PACKAGE__->method_documentation({
         format => '',
         read_only => '',
             },
-    'big_decimal' => {
-        datatype => 'BigDecimal',
-        base_name => 'BigDecimal',
-        description => '',
-        format => '',
-        read_only => '',
-            },
 });
 
 __PACKAGE__->openapi_types( {
@@ -275,8 +267,7 @@ __PACKAGE__->openapi_types( {
     'date' => 'DateTime',
     'date_time' => 'DateTime',
     'uuid' => 'string',
-    'password' => 'string',
-    'big_decimal' => 'BigDecimal'
+    'password' => 'string'
 } );
 
 __PACKAGE__->attribute_map( {
@@ -292,8 +283,7 @@ __PACKAGE__->attribute_map( {
     'date' => 'date',
     'date_time' => 'dateTime',
     'uuid' => 'uuid',
-    'password' => 'password',
-    'big_decimal' => 'BigDecimal'
+    'password' => 'password'
 } );
 
 __PACKAGE__->mk_accessors(keys %{__PACKAGE__->attribute_map});

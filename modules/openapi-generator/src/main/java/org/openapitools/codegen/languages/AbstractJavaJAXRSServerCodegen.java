@@ -244,10 +244,11 @@ public abstract class AbstractJavaJAXRSServerCodegen extends AbstractJavaCodegen
     @Override
     public String toApiName(final String name) {
         String computed = name;
-        if (computed.length() > 0) {
-            computed = sanitizeName(computed);
+        if (computed.length() == 0) {
+            return "DefaultApi";
         }
-         return super.toApiName(computed);
+        computed = sanitizeName(computed);
+        return camelize(computed) + "Api";
     }
 
     @Override

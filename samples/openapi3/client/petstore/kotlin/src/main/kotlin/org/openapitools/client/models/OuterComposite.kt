@@ -13,14 +13,12 @@ package org.openapitools.client.models
 
 
 import com.squareup.moshi.Json
-import java.io.Serializable
 /**
  * 
  * @param myNumber 
  * @param myString 
  * @param myBoolean 
  */
-
 data class OuterComposite (
     @Json(name = "my_number")
     val myNumber: java.math.BigDecimal? = null,
@@ -28,7 +26,6 @@ data class OuterComposite (
     val myString: kotlin.String? = null,
     @Json(name = "my_boolean")
     val myBoolean: kotlin.Boolean? = null
-) 
-: Serializable 
+)
 
 

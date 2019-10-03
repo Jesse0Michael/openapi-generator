@@ -27,8 +27,8 @@ web::json::value {{classname}}::toJson() const
 {
     web::json::value val = web::json::value::object();
 
-    {{#allowableValues}}{{#enumVars}}
-    if (m_value == e{{classname}}::{{classname}}_{{name}}) val = web::json::value::string(U({{{value}}}));{{/enumVars}}{{/allowableValues}}
+    {{#allowableValues}}{{#values}}
+    if (m_value == e{{classname}}::{{classname}}_{{.}}) val = web::json::value::string(U("{{.}}"));{{/values}}{{/allowableValues}}
 
     return val;
 }
@@ -37,8 +37,8 @@ void {{classname}}::fromJson(const web::json::value& val)
 {
     auto s = val.as_string();
 
-    {{#allowableValues}}{{#enumVars}}
-    if (s == utility::conversions::to_string_t({{{value}}})) m_value = e{{classname}}::{{classname}}_{{name}};{{/enumVars}}{{/allowableValues}}
+    {{#allowableValues}}{{#values}}
+    if (s == utility::conversions::to_string_t("{{.}}")) m_value = e{{classname}}::{{classname}}_{{.}};{{/values}}{{/allowableValues}}
 }
 
 void {{classname}}::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utility::string_t& prefix) const
@@ -51,8 +51,8 @@ void {{classname}}::toMultipart(std::shared_ptr<MultipartFormData> multipart, co
 
     utility::string_t s;
 
-    {{#allowableValues}}{{#enumVars}}
-    if (m_value == e{{classname}}::{{classname}}_{{name}}) s = utility::conversions::to_string_t({{{value}}});{{/enumVars}}{{/allowableValues}}
+    {{#allowableValues}}{{#values}}
+    if (m_value == e{{classname}}::{{classname}}_{{.}}) s = utility::conversions::to_string_t("{{.}}");{{/values}}{{/allowableValues}}
 
     multipart->add(ModelBase::toHttpContent(namePrefix, s));
 }
@@ -70,8 +70,8 @@ void {{classname}}::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, 
         s = ModelBase::stringFromHttpContent(multipart->getContent(namePrefix));
         e{{classname}} v;
         
-        {{#allowableValues}}{{#enumVars}}
-        if (s == utility::conversions::to_string_t({{{value}}})) v = e{{classname}}::{{classname}}_{{name}};{{/enumVars}}{{/allowableValues}}
+        {{#allowableValues}}{{#values}}
+        if (s == utility::conversions::to_string_t("{{.}}")) v = e{{classname}}::{{classname}}_{{.}};{{/values}}{{/allowableValues}}
 
         setValue(v);
     }

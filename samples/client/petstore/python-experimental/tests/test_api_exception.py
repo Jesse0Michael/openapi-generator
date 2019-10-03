@@ -58,13 +58,15 @@ class ApiExceptionTests(unittest.TestCase):
         with self.checkRaiseRegex(ApiException, "Internal Server Error"):
             self.pet_api.upload_file(
                 pet_id=self.pet.id,
-                additional_metadata="special"
+                additional_metadata="special",
+                file=None
             )
 
         try:
             self.pet_api.upload_file(
                 pet_id=self.pet.id,
-                additional_metadata="special"
+                additional_metadata="special",
+                file=None
             )
         except ApiException as e:
             self.assertEqual(e.status, 500)

@@ -17,7 +17,6 @@ import org.openapitools.client.models.OuterEnumInteger
 import org.openapitools.client.models.OuterEnumIntegerDefaultValue
 
 import com.squareup.moshi.Json
-import java.io.Serializable
 /**
  * 
  * @param enumString 
@@ -29,7 +28,6 @@ import java.io.Serializable
  * @param outerEnumDefaultValue 
  * @param outerEnumIntegerDefaultValue 
  */
-
 data class EnumTest (
     @Json(name = "enum_string_required")
     val enumStringRequired: EnumTest.EnumStringRequired,
@@ -47,16 +45,13 @@ data class EnumTest (
     val outerEnumDefaultValue: OuterEnumDefaultValue? = null,
     @Json(name = "outerEnumIntegerDefaultValue")
     val outerEnumIntegerDefaultValue: OuterEnumIntegerDefaultValue? = null
-) 
-: Serializable 
+)
 
 {
-
     /**
     * 
     * Values: uPPER,lower,eMPTY
     */
-    
     enum class EnumString(val value: kotlin.String){
     
         @Json(name = "UPPER") uPPER("UPPER"),
@@ -65,14 +60,14 @@ data class EnumTest (
     
         @Json(name = "") eMPTY("");
     
-
     }
+}
 
+{
     /**
     * 
     * Values: uPPER,lower,eMPTY
     */
-    
     enum class EnumStringRequired(val value: kotlin.String){
     
         @Json(name = "UPPER") uPPER("UPPER"),
@@ -81,36 +76,35 @@ data class EnumTest (
     
         @Json(name = "") eMPTY("");
     
-
     }
+}
 
+{
     /**
     * 
     * Values: _1,minus1
     */
-    
     enum class EnumInteger(val value: kotlin.Int){
     
         @Json(name = 1) _1(1),
     
         @Json(name = -1) minus1(-1);
     
-
     }
+}
 
+{
     /**
     * 
     * Values: _1period1,minus1Period2
     */
-    
     enum class EnumNumber(val value: kotlin.Double){
     
         @Json(name = 1.1) _1period1(1.1),
     
         @Json(name = -1.2) minus1Period2(-1.2);
     
-
     }
-
 }
+
 

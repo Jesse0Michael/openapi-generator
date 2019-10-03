@@ -9,7 +9,17 @@ import { {{classname}} } from '../{{filename}}';
 
 import { ObjectSerializer, Authentication, VoidAuth } from '../model/models';
 {{#hasAuthMethods}}
-import { HttpBasicAuth, ApiKeyAuth, OAuth } from '../model/models';
+{{#authMethods}}
+{{#isBasic}}
+import { HttpBasicAuth } from '../model/models';
+{{/isBasic}}
+{{#isApiKey}}
+import { ApiKeyAuth } from '../model/models';
+{{/isApiKey}}
+{{#isOAuth}}
+import { OAuth } from '../model/models';
+{{/isOAuth}}
+{{/authMethods}}
 {{/hasAuthMethods}}
 
 import { HttpError } from './apis';
@@ -47,7 +57,7 @@ export class {{classname}} {
         '{{name}}': new HttpBasicAuth(),
 {{/isBasic}}
 {{#isApiKey}}
-        '{{name}}': new ApiKeyAuth({{#isKeyInHeader}}'header'{{/isKeyInHeader}}{{#isKeyInQuery}}'query'{{/isKeyInQuery}}{{#isKeyInCookie}}'cookie'{{/isKeyInCookie}}, '{{keyParamName}}'),
+        '{{name}}': new ApiKeyAuth({{#isKeyInHeader}}'header'{{/isKeyInHeader}}{{^isKeyInHeader}}'query'{{/isKeyInHeader}}, '{{keyParamName}}'),
 {{/isApiKey}}
 {{#isOAuth}}
         '{{name}}': new OAuth(),
@@ -134,15 +144,6 @@ export class {{classname}} {
             .replace('{' + '{{baseName}}' + '}', encodeURIComponent(String({{paramName}}))){{/pathParams}};
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
-{{#hasProduces}}
-        const produces = [{{#produces}}'{{{mediaType}}}'{{#hasMore}}, {{/hasMore}}{{/produces}}];
-        // give precedence to 'application/json'
-        if (produces.indexOf('application/json') >= 0) {
-            localVarHeaderParams.Accept = 'application/json';
-        } else {
-            localVarHeaderParams.Accept = produces.join(',');
-        }
-{{/hasProduces}}
         let localVarFormParams: any = {};
 
 {{#allParams}}

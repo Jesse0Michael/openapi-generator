@@ -42,8 +42,6 @@ type FormatTest struct {
 
 	Password *string `json:"password,omitempty"`
 
-	BigDecimal *float64 `json:"BigDecimal,omitempty"`
-
 }
 
 // GetInteger returns the Integer field if non-nil, zero value otherwise.
@@ -475,39 +473,6 @@ func (o *FormatTest) SetPassword(v string) {
 	o.Password = &v
 }
 
-// GetBigDecimal returns the BigDecimal field if non-nil, zero value otherwise.
-func (o *FormatTest) GetBigDecimal() float64 {
-	if o == nil || o.BigDecimal == nil {
-		var ret float64
-		return ret
-	}
-	return *o.BigDecimal
-}
-
-// GetBigDecimalOk returns a tuple with the BigDecimal field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *FormatTest) GetBigDecimalOk() (float64, bool) {
-	if o == nil || o.BigDecimal == nil {
-		var ret float64
-		return ret, false
-	}
-	return *o.BigDecimal, true
-}
-
-// HasBigDecimal returns a boolean if a field has been set.
-func (o *FormatTest) HasBigDecimal() bool {
-	if o != nil && o.BigDecimal != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetBigDecimal gets a reference to the given float64 and assigns it to the BigDecimal field.
-func (o *FormatTest) SetBigDecimal(v float64) {
-	o.BigDecimal = &v
-}
-
 
 // MarshalJSON returns the JSON representation of the model.
 func (o FormatTest) MarshalJSON() ([]byte, error) {
@@ -562,9 +527,6 @@ func (o FormatTest) MarshalJSON() ([]byte, error) {
 	}
 	if o.Password != nil {
 		toSerialize["password"] = o.Password
-	}
-	if o.BigDecimal != nil {
-		toSerialize["BigDecimal"] = o.BigDecimal
 	}
 	return json.Marshal(toSerialize)
 }

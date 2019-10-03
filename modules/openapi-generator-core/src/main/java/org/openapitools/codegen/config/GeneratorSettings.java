@@ -40,7 +40,6 @@ public final class GeneratorSettings implements Serializable {
     private String modelPackage;
     private String invokerPackage;
     private String packageName;
-    private String apiNameSuffix;
     private String modelNamePrefix;
     private String modelNameSuffix;
     private String groupId;
@@ -105,21 +104,6 @@ public final class GeneratorSettings implements Serializable {
      */
     public String getPackageName() {
         return packageName;
-    }
-
-    /**
-     * Gets a api name suffix for generated models. This name will be appended to a api name.
-     * <p>
-     * This option is often used to circumvent compilation issues where models match keywords.
-     * <p>
-     * Example:
-     * <p>
-     * Suffix <code>Gen</code> applied to <code>Object</code> results in a generated class named <code>ObjectGen</code>.
-     *
-     * @return the model name suffix
-     */
-    public String getApiNameSuffix() {
-        return apiNameSuffix;
     }
 
     /**
@@ -341,7 +325,6 @@ public final class GeneratorSettings implements Serializable {
         modelPackage = builder.modelPackage;
         invokerPackage = builder.invokerPackage;
         packageName = builder.packageName;
-        apiNameSuffix = builder.apiNameSuffix;
         modelNamePrefix = builder.modelNamePrefix;
         modelNameSuffix = builder.modelNameSuffix;
         groupId = builder.groupId;
@@ -382,9 +365,6 @@ public final class GeneratorSettings implements Serializable {
         }
         if (isNotEmpty(artifactVersion)) {
             additional.put("artifactVersion", artifactVersion);
-        }
-        if (isNotEmpty(apiNameSuffix)) {
-            additional.put("apiNameSuffix", apiNameSuffix);
         }
         if (isNotEmpty(modelNamePrefix)) {
             additional.put("modelNamePrefix", modelNamePrefix);
@@ -453,7 +433,6 @@ public final class GeneratorSettings implements Serializable {
         builder.modelPackage = copy.getModelPackage();
         builder.invokerPackage = copy.getInvokerPackage();
         builder.packageName = copy.getPackageName();
-        builder.apiNameSuffix = copy.getApiNameSuffix();
         builder.modelNamePrefix = copy.getModelNamePrefix();
         builder.modelNameSuffix = copy.getModelNameSuffix();
         builder.groupId = copy.getGroupId();
@@ -500,7 +479,6 @@ public final class GeneratorSettings implements Serializable {
         private String modelPackage;
         private String invokerPackage;
         private String packageName;
-        private String apiNameSuffix;
         private String modelNamePrefix;
         private String modelNameSuffix;
         private String groupId;
@@ -590,17 +568,6 @@ public final class GeneratorSettings implements Serializable {
          */
         public Builder withPackageName(String packageName) {
             this.packageName = packageName;
-            return this;
-        }
-
-        /**
-         * Sets the {@code apiNameSuffix} and returns a reference to this Builder so that the methods can be chained together.
-         *
-         * @param apiNameSuffix the {@code apiNameSuffix} to set
-         * @return a reference to this Builder
-         */
-        public Builder withApiNameSuffix(String apiNameSuffix) {
-            this.apiNameSuffix = apiNameSuffix;
             return this;
         }
 
@@ -913,7 +880,6 @@ public final class GeneratorSettings implements Serializable {
                 ", modelPackage='" + modelPackage + '\'' +
                 ", invokerPackage='" + invokerPackage + '\'' +
                 ", packageName='" + packageName + '\'' +
-                ", apiNameSuffix='" + apiNameSuffix + '\'' +
                 ", modelNamePrefix='" + modelNamePrefix + '\'' +
                 ", modelNameSuffix='" + modelNameSuffix + '\'' +
                 ", groupId='" + groupId + '\'' +
@@ -944,7 +910,6 @@ public final class GeneratorSettings implements Serializable {
                 Objects.equals(getModelPackage(), that.getModelPackage()) &&
                 Objects.equals(getInvokerPackage(), that.getInvokerPackage()) &&
                 Objects.equals(getPackageName(), that.getPackageName()) &&
-                Objects.equals(getApiNameSuffix(), that.getApiNameSuffix()) &&
                 Objects.equals(getModelNamePrefix(), that.getModelNamePrefix()) &&
                 Objects.equals(getModelNameSuffix(), that.getModelNameSuffix()) &&
                 Objects.equals(getGroupId(), that.getGroupId()) &&
@@ -972,7 +937,6 @@ public final class GeneratorSettings implements Serializable {
                 getModelPackage(),
                 getInvokerPackage(),
                 getPackageName(),
-                getApiNameSuffix(),
                 getModelNamePrefix(),
                 getModelNameSuffix(),
                 getGroupId(),

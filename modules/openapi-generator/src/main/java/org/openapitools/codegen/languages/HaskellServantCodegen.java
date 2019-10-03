@@ -171,7 +171,6 @@ public class HaskellServantCodegen extends DefaultCodegen implements CodegenConf
         typeMapping.put("file", "FilePath");
         typeMapping.put("binary", "FilePath");
         typeMapping.put("number", "Double");
-        typeMapping.put("BigDecimal", "Double");
         typeMapping.put("any", "Value");
         typeMapping.put("UUID", "UUID");
         typeMapping.put("URI", "Text");

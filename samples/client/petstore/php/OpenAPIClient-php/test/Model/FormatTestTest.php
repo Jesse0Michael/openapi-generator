@@ -168,11 +168,4 @@ class FormatTestTest extends TestCase
     public function testPropertyPassword()
     {
     }
-
-    /**
-     * Test attribute "big_decimal"
-     */
-    public function testPropertyBigDecimal()
-    {
-    }
 }

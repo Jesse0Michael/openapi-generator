@@ -23,7 +23,7 @@ Module : OpenAPIPetstore.Core
 {-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE TupleSections #-}
 {-# LANGUAGE TypeFamilies #-}
-{-# OPTIONS_GHC -fno-warn-name-shadowing -fno-warn-unused-binds -fno-warn-unused-imports #-}
+{-# OPTIONS_GHC -fno-warn-name-shadowing -fno-warn-unused-binds #-}
 
 module OpenAPIPetstore.Core where
 

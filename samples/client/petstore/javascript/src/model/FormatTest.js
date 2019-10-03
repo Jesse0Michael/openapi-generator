@@ -105,9 +105,6 @@
       if (data.hasOwnProperty('password')) {
         obj['password'] = ApiClient.convertToType(data['password'], 'String');
       }
-      if (data.hasOwnProperty('BigDecimal')) {
-        obj['BigDecimal'] = ApiClient.convertToType(data['BigDecimal'], 'Number');
-      }
     }
     return obj;
   }
@@ -164,10 +161,6 @@
    * @member {String} password
    */
   exports.prototype['password'] = undefined;
-  /**
-   * @member {Number} BigDecimal
-   */
-  exports.prototype['BigDecimal'] = undefined;
 
 
 

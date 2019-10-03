@@ -15,12 +15,10 @@ import org.openapitools.client.models.Animal
 import org.openapitools.client.models.DogAllOf
 
 import com.squareup.moshi.Json
-import java.io.Serializable
 /**
  * 
  * @param breed 
  */
-
 data class Dog (
     @Json(name = "className")
     val className: kotlin.String,
@@ -28,7 +26,6 @@ data class Dog (
     val breed: kotlin.String? = null,
     @Json(name = "color")
     val color: kotlin.String? = null
-) 
-: Serializable 
+)
 
 

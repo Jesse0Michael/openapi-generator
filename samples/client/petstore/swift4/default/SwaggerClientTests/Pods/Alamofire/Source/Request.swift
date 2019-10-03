@@ -1,7 +1,7 @@
 //
 //  Request.swift
 //
-//  Copyright (c) 2014 Alamofire Software Foundation (http://alamofire.org/)
+//  Copyright (c) 2014-2018 Alamofire Software Foundation (http://alamofire.org/)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -161,8 +161,7 @@ open class Request {
         user: String,
         password: String,
         persistence: URLCredential.Persistence = .forSession)
-        -> Self
-    {
+        -> Self {
         let credential = URLCredential(user: user, password: password, persistence: persistence)
         return authenticate(usingCredential: credential)
     }
@@ -320,16 +319,21 @@ extension Request: CustomDebugStringConvertible {
 
         var headers: [AnyHashable: Any] = [:]
 
-        session.configuration.httpAdditionalHeaders?.filter {  $0.0 != AnyHashable("Cookie") }
-                                                    .forEach { headers[$0.0] = $0.1 }
+        if let additionalHeaders = session.configuration.httpAdditionalHeaders {
+            for (field, value) in additionalHeaders where field != AnyHashable("Cookie") {
+                headers[field] = value
+            }
+        }
 
-        request.allHTTPHeaderFields?.filter { $0.0 != "Cookie" }
-                                    .forEach { headers[$0.0] = $0.1 }
+        if let headerFields = request.allHTTPHeaderFields {
+            for (field, value) in headerFields where field != "Cookie" {
+                headers[field] = value
+            }
+        }
 
-        components += headers.map {
-            let escapedValue = String(describing: $0.value).replacingOccurrences(of: "\"", with: "\\\"")
-
-            return "-H \"\($0.key): \(escapedValue)\""
+        for (field, value) in headers {
+            let escapedValue = String(describing: value).replacingOccurrences(of: "\"", with: "\\\"")
+            components.append("-H \"\(field): \(escapedValue)\"")
         }
 
         if let httpBodyData = request.httpBody, let httpBody = String(data: httpBodyData, encoding: .utf8) {
@@ -497,19 +501,8 @@ open class DownloadRequest: Request {
     // MARK: State
 
     /// Cancels the request.
-    override open func cancel() {
-        cancel(createResumeData: true)
-    }
-
-    /// Cancels the request.
-    ///
-    /// - parameter createResumeData: Determines whether resume data is created via the underlying download task or not.
-    open func cancel(createResumeData: Bool) {
-        if createResumeData {
-            downloadDelegate.downloadTask.cancel { self.downloadDelegate.resumeData = $0 }
-        } else {
-            downloadDelegate.downloadTask.cancel()
-        }
+    open override func cancel() {
+        downloadDelegate.downloadTask.cancel { self.downloadDelegate.resumeData = $0 }
 
         NotificationCenter.default.post(
             name: Notification.Name.Task.DidCancel,
@@ -544,8 +537,7 @@ open class DownloadRequest: Request {
     open class func suggestedDownloadDestination(
         for directory: FileManager.SearchPathDirectory = .documentDirectory,
         in domain: FileManager.SearchPathDomainMask = .userDomainMask)
-        -> DownloadFileDestination
-    {
+        -> DownloadFileDestination {
         return { temporaryURL, response in
             let directoryURLs = FileManager.default.urls(for: directory, in: domain)
 

@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest.AuthenticationRequestBuilder;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest.TokenRequestBuilder;
-
 import org.threeten.bp.*;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;

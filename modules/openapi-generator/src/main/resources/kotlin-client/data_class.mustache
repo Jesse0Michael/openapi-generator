@@ -15,13 +15,10 @@ import kotlinx.android.parcel.Parcelize
 import kotlinx.serialization.*
 import kotlinx.serialization.internal.CommonEnumSerializer
 {{/multiplatform}}
-{{#serializableModel}}
-import java.io.Serializable
-{{/serializableModel}}
 /**
  * {{{description}}}
 {{#vars}}
- * @param {{{name}}} {{{description}}}
+ * @param {{{vendorExtensions.x-escapedName}}} {{{description}}}
 {{/vars}}
  */
 {{#parcelizeModels}}
@@ -34,9 +31,7 @@ data class {{classname}} (
 {{/-last}}{{/requiredVars}}{{#hasRequired}}{{#hasOptional}},
 {{/hasOptional}}{{/hasRequired}}{{#optionalVars}}{{>data_class_opt_var}}{{^-last}},
 {{/-last}}{{/optionalVars}}
-) {{^serializableModel}}{{#parcelizeModels}} : Parcelable{{/parcelizeModels}}{{/serializableModel}}
-{{^parcelizeModels}}{{#serializableModel}}: Serializable {{/serializableModel}}{{/parcelizeModels}}
-{{#parcelizeModels}}{{#serializableModel}} : Parcelable, Serializable {{/serializableModel}}{{/parcelizeModels}}
+){{#parcelizeModels}} : Parcelable{{/parcelizeModels}}
 {{#hasEnums}}
 {
 {{#vars}}{{#isEnum}}

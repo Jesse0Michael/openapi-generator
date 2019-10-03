@@ -13,7 +13,6 @@ package org.openapitools.client.models
 
 
 import com.squareup.moshi.Json
-import java.io.Serializable
 /**
  * 
  * @param integerProp 
@@ -29,7 +28,6 @@ import java.io.Serializable
  * @param objectAndItemsNullableProp 
  * @param objectItemsNullable 
  */
-
 data class NullableClass (
     @Json(name = "integer_prop")
     val integerProp: kotlin.Int? = null,
@@ -55,7 +53,6 @@ data class NullableClass (
     val objectAndItemsNullableProp: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null,
     @Json(name = "object_items_nullable")
     val objectItemsNullable: kotlin.collections.Map<kotlin.String, kotlin.Any>? = null
-) 
-: Serializable 
+)
 
 

@@ -34,7 +34,6 @@ public class FormatTest  implements Serializable {
   private @Valid Date dateTime;
   private @Valid UUID uuid;
   private @Valid String password;
-  private @Valid BigDecimal bigDecimal;
 
   /**
    * minimum: 10
@@ -271,23 +270,6 @@ public class FormatTest  implements Serializable {
     this.password = password;
   }
 
-  /**
-   **/
-  public FormatTest bigDecimal(BigDecimal bigDecimal) {
-    this.bigDecimal = bigDecimal;
-    return this;
-  }
-
-  
-  @ApiModelProperty(value = "")
-  @JsonProperty("BigDecimal")
-  public BigDecimal getBigDecimal() {
-    return bigDecimal;
-  }
-  public void setBigDecimal(BigDecimal bigDecimal) {
-    this.bigDecimal = bigDecimal;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -310,13 +292,12 @@ public class FormatTest  implements Serializable {
         Objects.equals(this.date, formatTest.date) &&
         Objects.equals(this.dateTime, formatTest.dateTime) &&
         Objects.equals(this.uuid, formatTest.uuid) &&
-        Objects.equals(this.password, formatTest.password) &&
-        Objects.equals(this.bigDecimal, formatTest.bigDecimal);
+        Objects.equals(this.password, formatTest.password);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(integer, int32, int64, number, _float, _double, string, _byte, binary, date, dateTime, uuid, password, bigDecimal);
+    return Objects.hash(integer, int32, int64, number, _float, _double, string, _byte, binary, date, dateTime, uuid, password);
   }
 
   @Override
@@ -337,7 +318,6 @@ public class FormatTest  implements Serializable {
     sb.append("    dateTime: ").append(toIndentedString(dateTime)).append("\n");
     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
-    sb.append("    bigDecimal: ").append(toIndentedString(bigDecimal)).append("\n");
     sb.append("}");
     return sb.toString();
   }

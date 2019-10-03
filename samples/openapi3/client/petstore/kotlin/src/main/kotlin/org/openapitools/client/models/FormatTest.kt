@@ -13,7 +13,6 @@ package org.openapitools.client.models
 
 
 import com.squareup.moshi.Json
-import java.io.Serializable
 /**
  * 
  * @param integer 
@@ -32,7 +31,6 @@ import java.io.Serializable
  * @param patternWithDigits A string that is a 10 digit number. Can have leading zeros.
  * @param patternWithDigitsAndDelimiter A string starting with 'image_' (case insensitive) and one to three digits following i.e. Image_01.
  */
-
 data class FormatTest (
     @Json(name = "number")
     val number: java.math.BigDecimal,
@@ -66,7 +64,6 @@ data class FormatTest (
     /* A string starting with 'image_' (case insensitive) and one to three digits following i.e. Image_01. */
     @Json(name = "pattern_with_digits_and_delimiter")
     val patternWithDigitsAndDelimiter: kotlin.String? = null
-) 
-: Serializable 
+)
 
 
